@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <!-- camera -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/camera.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cropper.min.css') }}">
+    <!--// camera -->
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />  
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />
 </head>
 
 <body id="dark-mode">
@@ -39,28 +43,89 @@
                     </li>
                 </ul>
                 </div>
-        
-            
+
+
         </div>
     </nav>
 
 <section  id="banner">
     <div class=".particles-js-canvas-el" id="particles-js"></div>
-        
-     
+
+
+
         <div class="container zindex">
+            <!-- camera -->
+            <div class="row hidden camera-module" id="camera-module">
+                <div class="camera-container">
+                    <!-- image input -->
+                    <div class="image-input" id="image-input">
+                        <div class="camera">
+                            <video id="cam-input">WebCam not available</video><br>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <button type="button" name="button" class="gradient-btn" id="cam-capture"><i class="fa fa-camera" aria-hidden="true"></i></button><br>
+                                    </td>
+                                    <td>
+                                        <button type="button" name="button" class="gradient-btn" id="cam-stop"><i class="fa fa-times" aria-hidden="true"></i></button><br>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- cropper -->
+                    <div class="cropping-board hidden" id="cropping-board">
+                        <div id="cam-canvas-div">
+                            <canvas id="cam-canvas"></canvas>
+                        </div>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    <h5 class="cam-rot-icon">Rotate</h5>
+                                </td>
+                                <td>
+                                    <input type="range" name="" min="-180" max="180" step="10" value="0" id="cam-rot-range"><br>
+                                </td>
+                                <td>
+                                    <button type="button" name="button" class="gradient-btn" id="cam-crop">Crop</button>
+                                </td>
+                                <td>
+                                    <button type="button" name="button" class="gradient-btn" id="cam-stop-alt"><i class="fa fa-times" aria-hidden="true"></i></button><br>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- output (hidden) -->
+                    <div class="cam-output hidden" id="cam-output">
+                        <form class="" method="post" enctype="multipart/form-data">
+                            <img src="" id="cam-img" alt="Captured Image">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!--// camera -->
+
             <div class="row">
                 <div class="col-lg-7 banner-txt">
                     <h3>Upload image</h3>
-              <form action = {{ url_for('upload') }} method="post" enctype="multipart/form-data">
+              <form action = {{ url_for('upload') }} method="post" enctype="multipart/form-data" id="formUpload">
     <input  style="border-radius:20px;font-family: 'Poppins', sans-serif;" type="file" name="imagefile" value="{{request.form.imagefile}}" id="fileToUpload">
     <input style="border-radius:10px;height:40px;width:100px;font-family: 'Poppins', sans-serif;background: rgb(255,85,0);
 background: linear-gradient(90deg, rgba(255,85,0,1) 2%, rgba(237,109,20,1) 67%, rgba(246,128,0,1) 87%);border:0px;" type="submit" value="Upload" name="submit" id="submit"></form>
+
+                    <!-- camera -->
+                    <h3 style="font-size: 28px;">- OR -</h3>
+                    <h3>Take a Picture</h3>
+                    <button class="gradient-btn" type="button" id="start-camera" name="button"><i class="fa fa-camera" aria-hidden="true"></i></button>
+                    <!--// camera -->
                 </div>
                 <div class="col-lg-5">
                     <div class="banner-img">
                         <img class="img-fluid" src="{{ url_for('static', filename='images/pencil.png') }}" alt="banner-img" >
-                        
+
                     </div>
                 </div>
             </div>
@@ -88,5 +153,9 @@ background: linear-gradient(90deg, rgba(255,85,0,1) 2%, rgba(237,109,20,1) 67%, 
     <script src="{{ url_for('static', filename='js/jquery.isotope.min.html') }}"></script>
     <script src="{{ url_for('static', filename='js/circular.js') }}"></script>
     <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <!-- camera -->
+    <script src="{{ url_for('static', filename='js/cropper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+    <!--// camera -->
 </body>
 </html>

@@ -1,0 +1,60 @@
+.hidden {
+    display: none;
+}
+
+.gradient-btn {
+    border-radius:10px;
+    height:50px;
+    width:70px;
+    font-family: 'Poppins', sans-serif;
+    background: rgb(255,85,0);
+    background: linear-gradient(90deg, rgba(255,85,0,1) 2%, rgba(237,109,20,1) 67%, rgba(246,128,0,1) 87%);
+    border:0px;
+}
+
+#cam-canvas-div {
+    overflow: hidden;
+}
+
+#cam-canvas {
+    display: block;
+    max-width: 100%;
+}
+
+#cam-rot-range {
+    vertical-align: middle;
+}
+
+.cam-rot-icon {
+    font-size: 28px;
+    font-family: pb;
+    color: #ff7657;
+    line-height: 45px;
+    padding-bottom: 23px;
+    padding-top: 16px;
+}
+
+.image-input {
+    text-align: center;
+}
+
+.camera-module {
+    position: fixed;
+    top: 5em;
+    left: 1em;
+    bottom: 1em;
+    right: 1em;
+    box-sizing: border-box;
+    background: rgb(0,0,0);
+    text-align: center;
+    z-index: 99999999;
+    border: 2px solid #ff7657;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.camera-container {
+    position: relative;
+    left: 0;
+    top: 0;
+}

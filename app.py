@@ -87,7 +87,7 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/upload/', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
     try:
         imagefile = request.files.get('imagefile', '')
@@ -111,6 +111,11 @@ def upload():
         imagePreProcessed = preProcessWithImage(openCVImage)
         convertedText = cleanText(imagePreProcessed)
         text = summarize(convertedText, 'lexRank', 5)
+        text = text + '-_**_-'
+        f = open('sample.txt')
+        prevText = f.read()
+        f.close()
+        text = text + prevText
         # text = pytesseract.image_to_string(imagePreProcessed)
         # Base64 encoding the uploaded image
         img_base64 = base64.b64encode(file)
