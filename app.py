@@ -117,11 +117,13 @@ def upload():
         convertedText = cleanText(imagePreProcessed)
         text = summarize(convertedText, 'lexRank', 5)
         text = text + '-_**_-'
+        print(text)
         print('yaha fata 4')
         f = open('sample.txt')
         prevText = f.read()
         f.close()
         text = text + prevText
+        print(text)
         print('yaha fata 5')
         # text = pytesseract.image_to_string(imagePreProcessed)
         # Base64 encoding the uploaded image
