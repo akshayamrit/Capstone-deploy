@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for, Response
 from flask_restful import Api, Resource, reqparse
 import pytesseract
 import cv2
-import nltk
+
 from PIL import Image
 import os, werkzeug
 from math import floor
