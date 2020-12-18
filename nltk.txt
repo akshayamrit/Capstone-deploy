@@ -1,4 +1,6 @@
-Tokenizer
+wordnet
+pros_cons
+reuters
 
 
 
