@@ -101,33 +101,40 @@ def upload():
         img1 = img.convert('LA')
         print("Before reducing", img1.size)
         imgsize = len(file) >> 20
+        print('yaha fata 1')
         if imgsize > 2:
             x, y = img1.size
             x *= REDUCTION_COEFF
             y *= REDUCTION_COEFF
             img1 = img1.resize((floor(x), floor(y)), Image.BICUBIC)
             print("Img reduced", img1.size)
+            print('yaha fata 2')
         ext = "jpeg"
         if "." in imagefile.filename:
             ext = imagefile.filename.rsplit(".", 1)[1]
+        print('yaha fata 3')
         imagePreProcessed = preProcessWithImage(openCVImage)
         convertedText = cleanText(imagePreProcessed)
         text = summarize(convertedText, 'lexRank', 5)
         text = text + '-_**_-'
+        print('yaha fata 4')
         f = open('sample.txt')
         prevText = f.read()
         f.close()
         text = text + prevText
+        print('yaha fata 5')
         # text = pytesseract.image_to_string(imagePreProcessed)
         # Base64 encoding the uploaded image
         img_base64 = base64.b64encode(file)
         img_base64_str = str(img_base64)
+        print('yaha fata 6')
         # final base64 encoded string
         img_base64_str = "data:image/" + ext + ";base64," + img_base64_str.split('\'', 1)[1][0:-1]
         f = open("sample.txt", "a")
         f.truncate(0)
         f.write(text)
         f.close()
+        print('yaha fata 7')
         return render_template('result.html', var=text, img=img_base64_str)
     except Exception as e:
         print(e)
