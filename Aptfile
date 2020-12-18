@@ -5,3 +5,5 @@ libice6
 libgl1-mesa-glx
 tesseract-ocr
 tesseract-ocr-eng
+ffmpeg
+libxext6
