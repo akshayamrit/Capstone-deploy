@@ -9,7 +9,9 @@ import base64
 import numpy as np
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
+import nltk
 
+nltk.download('punkt')
 
 pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 
