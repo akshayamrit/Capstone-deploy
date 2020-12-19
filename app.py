@@ -51,7 +51,7 @@ def cleanText(preProcessedImage):
     finalString = ''
     parser = GingerIt()
     for i in text.split('.'):
-        finalString = finalString + parser.parse(i)['result']
+        finalString = finalString + parser.parse(i)['result'] + '.'
     return finalString
 
 
