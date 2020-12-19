@@ -10,9 +10,11 @@ import numpy as np
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 import nltk
+from gingerit.gingerit import GingerIt
 
 nltk.download('punkt')
 
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 
 REDUCTION_COEFF = 0.9
@@ -46,7 +48,11 @@ def cleanText(preProcessedImage):
     text = text.replace('<>', '\n')
     text = text.replace('\n-', '\n')
     text = text.replace('-\n', '')
-    return text
+    finalString = ''
+    parser = GingerIt()
+    for i in text.split('.'):
+        finalString = finalString + parser.parse(i)['result']
+    return finalString
 
 
 def summarize(text, typeOfSummary, noOfSentences):
@@ -113,7 +119,7 @@ def upload():
         imagePreProcessed = preProcessWithImage(openCVImage)
         convertedText = cleanText(imagePreProcessed)
         text = summarize(convertedText, 'lexRank', 5)
-        text = text
+        # text = text
         # text = pytesseract.image_to_string(imagePreProcessed)
         # Base64 encoding the uploaded image
         img_base64 = base64.b64encode(file)
